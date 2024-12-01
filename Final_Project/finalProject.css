@@ -1,0 +1,29 @@
+/*NAV BAR*/
+#main-nav {
+    background-color:cornflowerblue;
+    text-align: center;
+    width: 100%
+    }
+
+    #main-nav li:hover {
+        background-color: #c9c0c0;
+        color: rgb(146, 143, 143);
+    }
+
+    #main-nav li {
+        display: inline-block;
+        position: relative;
+    }
+
+    #main-nav ul li{
+        list-style-type: none;
+        display: inline-block;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #main-nav ul ul {
+        display: none;
+        position: absolute;
+    }
+

@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Event Finder - Home Page</title>
+    <link rel="stylesheet" href="finalProject.css">
+    <!--CSS AREA-->
+    <style>
+        body {
+            text-align: center;
+        }
+        /*Used for things initially hidden and then use classList.remover('hidden')*/
+        .hidden{
+            display: none;
+        }
+
+        /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
+        .item1 { grid-area: what; }
+        .item2 { grid-area: how; }
+        .item3 { grid-area: api; }
+        .item4 { grid-area: troubleshoot; }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'what how'
+                'api troubleshoot';
+            gap: 10px;
+            background-color: #2196F3;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .grid-container > div {
+            background-color: ivory;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header><h1>About The App</h1></header>
+
+    <!-- Navigation Menu (KEEP SAME FOR EACH) -->
+    <nav id="main-nav">
+        <ul>
+            <li onclick="window.location='homeFormPage.html'"><strong>Home</strong></li>
+            <li onclick="window.location='about.html'"><strong>About</strong></li>
+        </ul>
+    </nav>
+
+    <!--Grid Area Breakdown For While We Code It
+        Item 1= what (what does our app do?)
+        Item 2= how (how to use out app and can link to ReadMe in repo)
+        Item 3= api (explain API and have image that hyperlinks to site like in Assignment 1)
+        Item 4= troubleshoot (every JS alert we use can be documented here so users understand error messages)
+    -->
+
+    <div class="grid-container">
+        <div class="item1"><h1><strong>What is (Name of App)?</strong></h1></div>
+        <div class="item2"><h1><strong>How to Use Our App</strong></h1></div>
+        <div class="item3"><h1><strong>Ticketmaster API</strong></h1></div>
+        <div class="item4"><h1><strong>Troubleshooting Help</strong></h1></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<html>
+<head>
+    <title>Event Finder - Home Page</title>
+    <link rel="stylesheet" href="finalProject.css">
+    <style>
+        /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
+
+        .item1 { grid-area: filter; }
+        .item2 { grid-area: main; }
+
+        body {
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'filter main main main main main'
+                'filter main main main main main'
+                'filter main main main main main';
+            gap: 10px;
+            background-color: #2196F3;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .grid-container > div {
+            background-color: ivory;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #filterForm {
+            background-color: ivory;
+            padding: 20px;
+            text-align: left;
+        }
+
+        /*Second form*/
+        .filter1 { grid-area: filter1; }
+        .filter2 { grid-area: filter2; }
+        .filter3 { grid-area: filter3; }
+        .filter4 { grid-area: filter4; }
+        .filter5 { grid-area: filter5; }
+        .filter6 { grid-area: filter6; }
+
+        .secondForm {
+            background-color: ivory;
+            text-align: justify;
+            display: grid;
+            grid-template-areas:
+                'filter1 filter2 filter3'
+                'filter4 filter5 filter6';
+            gap: 10px;
+            background-color: #2196F3;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .secondForm > div {
+            background-color: ivory;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Find An Event</h1>
+
+<!-- Navigation Menu (KEEP SAME FOR EACH) -->
+<nav id="main-nav">
+    <ul>
+        <li onclick="window.location='homeFormPage.html'"><strong>Home</strong></li>
+        <li onclick="window.location='about.html'"><strong>About</strong></li>
+    </ul>
+</nav>
+
+<div class="grid-container">
+    <div class="item1">
+        <h1><strong>Filters</strong></h1>
+        <h3><strong>Check all that you care about:</strong></h3>
+        <br>
+        <!-- /discovery/v2/events -->
+        <div id="filterForm">
+            <!--Loads Step 2 Form -->
+            <form name="filterForm" onsubmit="populateForm(event)">
+                <div>
+                    <input type="checkbox" id="keyword" name="keyword">
+                    <label for="keyword">Keyword Search</label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="classificationName" name="classificationName">
+                    <label for="classificationName">Event Classification</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="includeFamily" name="includeFamily">
+                    <label for="includeFamily">Family Friendliness</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="preferredCountry" name="preferredCountry">
+                    <label for="preferredCountry">Location Preference</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="startEndDateTime" name="startEndDateTime">
+                    <label for="startEndDateTime">Date</label>
+                </div>
+
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="item2">
+        <h1><strong>What Do You Want?</strong></h1>
+        <br>
+        <div id ="secondForm">
+            <form name="searchEventsForm" method="get" action="formRedirectPage.html">
+                <div id="question1" class="hidden">
+                    <label for="keywordFilter">Search by Term:</label>
+                    <input type="text" id="keywordFilter" name="keywordFilter">
+                </div>
+
+                <div id="question2" class="hidden">
+                    <label for = "classificationNameFilter">Event Classification:</label>
+
+                    <select id="classificationNameFilter">
+                        <option hidden disabled selected value>-- Select Option --</option>
+                        <option label="Fill 1"></option>
+                        <option label="Fill 2"></option>
+                        <option label="Fill 3"></option>
+                      </select>
+                </div>
+                <div id="question3" class="hidden">
+                    <label for = "includeFamilyFilter">Family Friendly?</label>
+
+                    <select id="includeFamilyFilter">
+                        <option hidden disabled selected value>-- Select Option --</option>
+                        <option label="Yes" value="yes"></option>
+                        <option label="No" value="no"></option>
+                      </select>
+                </div> 
+
+                <!--STILL NEED TO VALIDATE FOR CoMPLIANT COUNTRY CODES-->
+                <div id="question4" class="hidden">
+                    <label for="preferredCountryFilter">Country Code (abbreviation):</label>
+                    <input type="text" id="preferredCountryFilter" name="preferredCountryFilter">
+                </div> 
+
+                <div id="question5" class="hidden">
+                    <label for="startEndDateTimeFilter">Desired Event Date:</label>
+                    <input type="date" id="startEndDateTimeFilter" name="startEndDateTimeFilter">
+                </div>
+
+                <div id="question6" class="hidden">Q6 not yet written</div>
+
+                <input id="secondSubmit" type="submit" class="hidden">
+            </form>
+        </div>
+    </div>  
+</div>
+
+<script type="text/javascript">
+    /*loads relevant filters into second half of page*/
+    function populateForm(event) {
+    event.preventDefault(); 
+
+    const checkboxes = document.querySelectorAll('#filterForm input[type="checkbox"]');
+    let count = 1;
+
+    checkboxes.forEach((checkbox) => {
+        const questionDiv = document.getElementById(`question${count}`);
+        if (checkbox.checked) {
+            questionDiv.classList.remove('hidden');
+            questionDiv.setAttribute('class', `filter${count}`);
+        } 
+        count = count+1;
+    });
+
+    document.getElementById('secondSubmit').classList.remove('hidden');
+}
+
+</script>
+
+</body>
+</html>
