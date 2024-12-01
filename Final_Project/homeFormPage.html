@@ -5,11 +5,14 @@
     <style>
         /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
 
+        /*ADD MORE SPACE BETWEEN ROWS FOR FORMS EVENTUALLY*/
+
         .item1 { grid-area: filter; }
         .item2 { grid-area: main; }
 
         body {
             text-align: center;
+            background-color: rgb(230, 230, 230);
         }
 
         .grid-container {
@@ -27,13 +30,17 @@
         }
 
         .grid-container > div {
-            background-color: ivory;
+            background-color:rgb(230, 230, 230);
             text-align: center;
             padding: 20px 0;
+            border: 5px darkblue;
         }
 
         #filterForm {
-            background-color: ivory;
+            width: 100%;
+            position:relative;
+            box-sizing: border-box;
+            background-color: rgb(230, 230, 230);
             padding: 20px;
             text-align: left;
         }
@@ -47,7 +54,6 @@
         .filter6 { grid-area: filter6; }
 
         .secondForm {
-            background-color: ivory;
             text-align: justify;
             display: grid;
             grid-template-areas:
@@ -75,7 +81,7 @@
 
 <body>
 
-<h1>Find An Event</h1>
+<h1><header>Find An Event!</header></h1>
 
 <!-- Navigation Menu (KEEP SAME FOR EACH) -->
 <nav id="main-nav">
@@ -87,7 +93,7 @@
 
 <div class="grid-container">
     <div class="item1">
-        <h1><strong>Filters</strong></h1>
+        <h1><strong><u>Filters</u></strong></h1>
         <h3><strong>Check all that you care about:</strong></h3>
         <br>
         <!-- /discovery/v2/events -->
@@ -125,7 +131,7 @@
     </div>
 
     <div class="item2">
-        <h1><strong>What Do You Want?</strong></h1>
+        <h1><strong><u>What Do You Want?</u></strong></h1>
         <br>
         <div id ="secondForm">
             <form name="searchEventsForm" method="get" action="formRedirectPage.html">
@@ -172,6 +178,7 @@
         </div>
     </div>  
 </div>
+</body>
 
 <script type="text/javascript">
     /*loads relevant filters into second half of page*/
@@ -194,6 +201,4 @@
 }
 
 </script>
-
-</body>
 </html>

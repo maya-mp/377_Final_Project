@@ -1,13 +1,13 @@
 /*NAV BAR*/
 #main-nav {
-    background-color:cornflowerblue;
+    background-color:#2196F3;
     text-align: center;
     width: 100%
     }
 
     #main-nav li:hover {
-        background-color: #c9c0c0;
-        color: rgb(146, 143, 143);
+        background-color: lightslategray;
+        color: darkblue;
     }
 
     #main-nav li {
