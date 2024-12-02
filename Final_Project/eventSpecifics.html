@@ -1,11 +1,14 @@
 <html>
 <head>
-    <title>Event Finder - Home Page</title>
+    <title>Event Finder - Event Specifics</title>
     <link rel="stylesheet" href="finalProject.css">
     <style>
         /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
 
-        .item1 { grid-area: pics; }
+        .item1 { grid-area: pics; 
+                width:100%;
+                height:100%;
+                justify-content: center;}
         .item2 { grid-area: name; }
         .item3 { grid-area: info1; }
         .item4 { grid-area: info2; }
@@ -24,7 +27,7 @@
                 'pics pics pics info1 info1 info1 info2 info2 info2'
                 'name name name info1 info1 info1 info2 info2 info2'
                 'name name name link link link link link link';
-            gap: 10px;
+            gap: 30px;
             background-color: #2196F3;
             padding: 10px;
             width: 100%;
@@ -36,7 +39,6 @@
             background-color:rgb(230, 230, 230);
             text-align: center;
             padding: 20px 0;
-            border: 5px darkblue;
         }
 
         /*text boxes within the sub sections of the grids*/
@@ -73,6 +75,7 @@
         </ul>
     </nav>
 
+    <!--FILL WHEN WE IMPLEMENT API JS-->
     <div class="grid-container">
         <div class="item1">pics</div>
         <div class="item2">name</div>

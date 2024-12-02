@@ -3,74 +3,24 @@
       <title>Event Finder - Redirect Page</title>
     <link rel="stylesheet" href="finalProject.css">
     <style>
-        /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
-
-        .item1 { grid-area: filter; }
-        .item2 { grid-area: main; }
-
         body {
             text-align: center;
             background-color: #e6e6e6;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-areas:
-                'filter main main main main main'
-                'filter main main main main main'
-                'filter main main main main main';
-            gap: 10px;
-            background-color: #2196F3;
-            padding: 10px;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        .grid-container > div {
-            background-color: ivory;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        #filterForm {
-            background-color: ivory;
-            padding: 20px;
-            text-align: left;
-        }
-
-        /*Second form*/
-        .filter1 { grid-area: filter1; }
-        .filter2 { grid-area: filter2; }
-        .filter3 { grid-area: filter3; }
-        .filter4 { grid-area: filter4; }
-        .filter5 { grid-area: filter5; }
-        .filter6 { grid-area: filter6; }
-
-        .secondForm {
-            background-color: ivory;
-            text-align: justify;
-            display: grid;
-            grid-template-areas:
-                'filter1 filter2 filter3'
-                'filter4 filter5 filter6';
-            gap: 10px;
-            background-color: #2196F3;
-            padding: 10px;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        .secondForm > div {
-            background-color: ivory;
-            text-align: center;
-            padding: 20px 0;
-        }
-
         .hidden{
             display: none;
         }
+
+        #eventsTable{
+            width:100%;
+            background-color:seashell;
+        }
+
+        table, th, td {
+            border: 2px solid darkblue;
+            }
+
     </style>
    </head>
    <body>
@@ -81,7 +31,16 @@
              <li onclick="window.location='about.html'"><strong>About</strong></li>
          </ul>
      </nav>
-     
-     <div class="grid-container"></div>
+
+     <table id="eventsTable">
+        <tr>
+            <th><strong>Event Info 1</strong></th>
+            <th><strong>Event Info 2</strong></th>
+            <th><strong>Event Info 3</strong></th>
+            <th><strong>Event Info 4</strong></th>
+            <th><strong>Event Info 5</strong></th>
+            <th><strong>Button to eventSpecificsPage</strong></th>
+        </tr>
+    </table>
    </body>
 </html>
