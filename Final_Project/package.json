@@ -1,0 +1,16 @@
+{
+  "name": "final_project",
+  "version": "1.0.0",
+  "description": "INST377 Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e '*'"
+  },
+  "author": "Jordan Pinkava",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.46.2",
+    "nodemon": "^3.1.7"
+  }
+}
