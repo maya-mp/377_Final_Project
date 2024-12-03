@@ -224,15 +224,6 @@
     return true; 
     };
 
-    //Note: eventClassification and familyFriendly are pre-formatted thru form values
-
-    //Date to YYYY-MM-DDT00:00:00
-    function transformDate(date) {
-        var dateNoTIme = document.getElementById('startEndDateTimeFilter').value
-        const dateTimeForAPI = `${dateNoTime}T00:00:00`
-        return dateTimeForAPI;
-    };
-
     //Saving the data from the form submit locally to access in the redirect page
     function handleFormSubmission(event) {
         event.preventDefault(); 
@@ -253,8 +244,8 @@
         if (document.getElementById('preferredCountry').checked) {
             formData.preferredCountryFilter = document.getElementById('preferredCountryFilter').value;}
 
-        if (document.getElementById('startEndDateTime').checked) {if(document.getElementById('startEndDateTimeFilter')) {
-            formData.startEndDateTimeFilter = transformDate(document.getElementById('startEndDateTimeFilter').value);}}
+        if (document.getElementById('startEndDateTime').checked) {
+            formData.startEndDateTimeFilter = `${document.getElementById('startEndDateTimeFilter').value}`;}
 
         localStorage.setItem('formData', JSON.stringify(formData)); //store in local storage
 

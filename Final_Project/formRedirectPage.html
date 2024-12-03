@@ -53,9 +53,52 @@
 
     if (formData) {
         console.log(formData); 
-        localStorage.removeItem('formData'); //get rid after no longer useful
-        
-        alert("Form Data: " + JSON.stringify(formData));} 
+        alert("Form Data: " + JSON.stringify(formData));} //to see if it is formatted right (REMOVE LATER)
+
+    //formatting api endpoint for calling
+    const apiKey = ''//PUT IT HERE AFTER SYNCING GIT
+    let additionToURL = [];
+    let urlWithFilters = '';
+    const baseApiUrl = `https://app.ticketmaster.com/discovery/v2/events.json?${urlWithFilters}&apikey=${apiKey}`
+
+    function formatURL(){
+        if (formData){
+            if(formData.keywordFilter){
+                const keywordString = `keyword=${formData.keywordFilter}`;
+                additionToURL.push(keywordString);
+            };
+            if(formData.classificationNameFilter){
+                const classificationString = `classificationName=${formData.classificationNameFilter}`;
+                additionToURL.push(classificationString);
+            };
+            if(formData.includeFamilyFilter){
+                const includeFamilyString = `includeFamily=${formData.includeFamilyFilter}`;
+                additionToURL.push(includeFamilyString);
+            };
+            if(formData.preferredCountryFilter){
+                const preferredCountryString = `preferredCountry=${formData.preferredCountryFilter}`;
+                additionToURL.push(preferredCountryString);
+            };
+            if(formData.startEndDateTimeFilter){
+                let date = formData.startEndDateTimeFilter; 
+    
+                let startDate = `${date}T00:00:00Z`; // start of the day
+                let endDate = `${date}T23:59:59Z`;   // end of the day
+
+                const dateString = `startEndDateTime=${startDate},${endDate}`
+                additionToURL.push(dateString);
+            };
+
+            urlWithFilters = additionToURL.join('&');
+
+        }
+        alert("Formatted Parameters: " + urlWithFilters);
+    }
+
+    //API Promise 
+
+    window.onload = formatURL;
+    localStorage.removeItem('formData'); //get rid after no longer useful
 </script>
 
 </html>
