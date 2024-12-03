@@ -141,8 +141,7 @@
         <h1><strong><u>What Do You Want?</u></strong></h1>
         <br>
         <div id ="secondForm">
-            <form name="searchEventsForm" method="get" action="formRedirectPage.html" 
-            onsubmit="if(!textValidation(event)) return false; transformDate();">
+            <form name="searchEventsForm" method="get" onsubmit="handleFormSubmission(event); return false;">
 
                 <div id="question1" class="hidden">
                     <label for="keywordFilter">Search by Term:</label>
@@ -154,9 +153,9 @@
 
                     <select id="classificationNameFilter">
                         <option hidden disabled selected value>-- Select Option --</option>
-                        <option label="Fill 1"></option>
-                        <option label="Fill 2"></option>
-                        <option label="Fill 3"></option>
+                        <option value = "Sports" label="Sports"></option>
+                        <option value="Miscellaneous" label="Miscellaneous"></option>
+                        <option value="Music" label="Music"></option>
                       </select>
                 </div>
                 <div id="question3" class="hidden">
@@ -179,8 +178,6 @@
                     <label for="startEndDateTimeFilter">Desired Event Date:</label>
                     <input type="date" id="startEndDateTimeFilter" name="startEndDateTimeFilter">
                 </div>
-
-                <div id="question6" class="hidden">Q6 not yet written</div>
 
                 <input id="secondSubmit" type="submit" class="hidden">
             </form>
@@ -223,14 +220,42 @@
     return true; 
     };
 
-
     //Note: eventClassification and familyFriendly are pre-formatted thru form values
 
     //Date to YYYY-MM-DDT00:00:00
-    function transformDate() {
+    function transformDate(date) {
         var dateNoTIme = document.getElementById('startEndDateTimeFilter').value
         const dateTimeForAPI = `${dateNoTime}T00:00:00`
         return dateTimeForAPI;
     };
+
+    //Saving the data from the form submit locally to access in the redirect page
+    function handleFormSubmission(event) {
+        event.preventDefault(); 
+
+        if (!textValidation(event)) return false;
+
+        const formData = {};
+
+        if (document.getElementById('keyword').checked) {
+            formData.keywordFilter = document.getElementById('keywordFilter').value;}
+
+        if (document.getElementById('classificationName').checked) {
+            formData.classificationNameFilter = document.getElementById('classificationNameFilter').value;}
+
+        if (document.getElementById('includeFamily').checked) {
+            formData.includeFamilyFilter = document.getElementById('includeFamilyFilter').value;}
+
+        if (document.getElementById('preferredCountry').checked) {
+            formData.preferredCountryFilter = document.getElementById('preferredCountryFilter').value;}
+
+        if (document.getElementById('startEndDateTime').checked) {if(document.getElementById('startEndDateTimeFilter')) {
+            formData.startEndDateTimeFilter = transformDate(document.getElementById('startEndDateTimeFilter').value);}}
+
+        localStorage.setItem('formData', JSON.stringify(formData)); //store in local storage
+
+        window.location.href = 'formRedirectPage.html';
+    };
+
 </script>
 </html>

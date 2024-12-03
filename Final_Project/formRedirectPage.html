@@ -44,4 +44,18 @@
         </tr>
     </table>
    </body>
+
+   <script type="text/javascript">
+
+    // taking data over from previous page
+    //inspo: https://www.freecodecamp.org/news/use-local-storage-in-modern-applications/ 
+   const formData = JSON.parse(localStorage.getItem('formData'));
+
+    if (formData) {
+        console.log(formData); 
+        localStorage.removeItem('formData'); //get rid after no longer useful
+        
+        alert("Form Data: " + JSON.stringify(formData));} 
+</script>
+
 </html>
