@@ -37,7 +37,6 @@
         <tr>
             <th><strong>Name</strong></th>
             <th><strong>Date</strong></th>
-            <th><strong>Description</strong></th>
             <th><strong>Price Ranges</strong></th>
             <th><strong>Classification Name</strong></th>
             <th><strong>Button</strong></th> <!-- to eventSpecificsPage-->
@@ -56,7 +55,7 @@
         alert("Form Data: " + JSON.stringify(formData));} //to see if it is formatted right (REMOVE LATER)
 
     //formatting api endpoint for calling
-    const apiKey = ''//PUT IT HERE AFTER SYNCING GIT
+    const apiKey = 'soA7AjtbzlJuGSh4GrwGE0XHmghpGATq'
     let additionToURL = [];
     let urlWithFilters = '';
     const baseApiUrl = `https://app.ticketmaster.com/discovery/v2/events.json?${urlWithFilters}&apikey=${apiKey}`
@@ -90,15 +89,60 @@
             };
 
             urlWithFilters = additionToURL.join('&');
-
-        }
-        alert("Formatted Parameters: " + urlWithFilters);
+            return baseApiUrl;
+        };
     }
 
-    //API Promise 
+    //API promise
+    async function loadSearchAPI() {
+            const response = await fetch(baseApiUrl);
+            const eventsData = await response.json();
+            return eventsData._embedded.events
+        }
 
-    window.onload = formatURL;
-    localStorage.removeItem('formData'); //get rid after no longer useful
+    //populate table
+    async function populateEventsTable() {
+        const events = await loadSearchAPI();
+
+        if (events.length > 0) {
+            events.forEach(event => {
+            const tableRow = document.createElement('tr');
+            
+            const nameRow = document.createElement('td');
+            nameRow.textContent = event.name;
+    
+            const dateRow = document.createElement('td');
+            dateRow.textContent = event.dates.start.localDate;
+            
+            const priceRow = document.createElement('td');
+            priceRow.textContent = `$${event.priceRanges[0].min} - $${event.priceRanges[0].max}`;
+            
+            const classificationRow = document.createElement('td');
+            classificationRow.textContent = event.classifications[0].segment.name;
+            
+            // button function to be implemented later
+            const buttonRow = document.createElement('td');
+            const detailsButton = document.createElement('button');
+            detailsButton.textContent = "Get Details!";
+            buttonRow.appendChild(detailsButton);
+
+            tableRow.appendChild(nameRow);
+            tableRow.appendChild(dateRow);
+            tableRow.appendChild(priceRow);
+            tableRow.appendChild(classificationRow);
+            tableRow.appendChild(buttonRow);
+
+            document.getElementById('eventsTable').appendChild(tableRow);
+
+    });} 
+        else {console.log("No events to display. Please adjust your filters to be more broad.");}
+    }
+
+    window.onload = () => {
+        formatURL();
+        populateEventsTable();
+        localStorage.removeItem('formData'); 
+    };
 </script>
 
 </html>
