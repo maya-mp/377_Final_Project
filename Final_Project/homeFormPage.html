@@ -207,13 +207,15 @@
     document.getElementById('secondSubmit').classList.remove('hidden');
 
     /*FUNCTIONS FOR FORM VALIDATION AND GETTINF USABLE STRINGS TO PASS*/
+    var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     function textValidation() { //IDK IF THIS IS NEEDED 
-        var keywordForSearch = document.getElementById('KeywordFilter').value
-        var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        var keywordForSearch = document.getElementById('KeywordFilter').value;
         if (validation.test(keyworkForSearch)) {
             alert('Special Character is Present. Please edit your search terms.');
-            return false;}
-        return true;}
+            return false;
+        }
+        //return true;
+    }
 
     //Note: eventClassification and familyFriendly are pre-formatted thru form values
 
