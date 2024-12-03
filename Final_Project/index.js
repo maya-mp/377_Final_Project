@@ -44,15 +44,16 @@ if (annyang) {
       
       //might need to have complimentary functions
       //search for term and county code
-     'search :term': (term) => {
-         },
-      //select drop down for event and family friendly (could this also get complicated?)
-      'select :item': (item) => {
-         },
-      //date for date -- do we need voice command for all (i feel like this might be complicated)
+      //ignore for now -- will implement if it isn't too difficult/confusing
+   //   'search :term': (term) => {
+   //       },
+   //    //select drop down for event and family friendly (could this also get complicated?)
+   //    'select :item': (item) => {
+   //       },
+   //    //date for date -- do we need voice command for all (i feel like this might be complicated)
 
-      'date :input': (input) => {
-         }
+   //    'date :input': (input) => {
+   //       }
 
    };
  
