@@ -9,10 +9,6 @@
             background-color: #e6e6e6;
         }
 
-        .hidden{
-            display: none;
-        }
-
         #eventsTable{
             width:100%;
             background-color:seashell;
@@ -38,69 +34,67 @@
             <th><strong>Name</strong></th>
             <th><strong>Date</strong></th>
             <th><strong>Price Ranges</strong></th>
-            <th><strong>Classification Name</strong></th>
-            <th><strong>Button</strong></th> <!-- to eventSpecificsPage-->
+            <th><strong>Classification</strong></th>
+            <th><strong>More Info?</strong></th> <!-- to eventSpecificsPage-->
         </tr>
     </table>
    </body>
 
    <script type="text/javascript">
 
+    //global variables
+    let formData = null; // make form data global
+    const apiKey = 'soA7AjtbzlJuGSh4GrwGE0XHmghpGATq';
+    let urlWithFilters = ''; 
+    const baseApiUrl = 'https://app.ticketmaster.com/discovery/v2/events.json?';
+
     // taking data over from previous page
-    //inspo: https://www.freecodecamp.org/news/use-local-storage-in-modern-applications/ 
-   const formData = JSON.parse(localStorage.getItem('formData'));
-
-    if (formData) {
-        console.log(formData); 
-        alert("Form Data: " + JSON.stringify(formData));} //to see if it is formatted right (REMOVE LATER)
-
-    //formatting api endpoint for calling
-    const apiKey = 'soA7AjtbzlJuGSh4GrwGE0XHmghpGATq'
-    let additionToURL = [];
-    let urlWithFilters = '';
-    const baseApiUrl = `https://app.ticketmaster.com/discovery/v2/events.json?${urlWithFilters}&apikey=${apiKey}`
-
-    function formatURL(){
-        if (formData){
-            if(formData.keywordFilter){
-                const keywordString = `keyword=${formData.keywordFilter}`;
-                additionToURL.push(keywordString);
-            };
-            if(formData.classificationNameFilter){
-                const classificationString = `classificationName=${formData.classificationNameFilter}`;
-                additionToURL.push(classificationString);
-            };
-            if(formData.includeFamilyFilter){
-                const includeFamilyString = `includeFamily=${formData.includeFamilyFilter}`;
-                additionToURL.push(includeFamilyString);
-            };
-            if(formData.preferredCountryFilter){
-                const preferredCountryString = `preferredCountry=${formData.preferredCountryFilter}`;
-                additionToURL.push(preferredCountryString);
-            };
-            if(formData.startEndDateTimeFilter){
-                let date = formData.startEndDateTimeFilter; 
-    
-                let startDate = `${date}T00:00:00Z`; // start of the day
-                let endDate = `${date}T23:59:59Z`;   // end of the day
-
-                const dateString = `startEndDateTime=${startDate},${endDate}`
-                additionToURL.push(dateString);
-            };
-
-            urlWithFilters = additionToURL.join('&');
-            return baseApiUrl;
-        };
+    //inspo: https://www.freecodecamp.org/news/use-local-storage-in-modern-applications/
+    function getEventData() {
+        formData = JSON.parse(localStorage.getItem('formData')); 
+        if (formData) {
+            console.log("Form Data Loaded:", formData);
+            alert("Form Data: " + JSON.stringify(formData)); } 
     }
 
-    //API promise
-    async function loadSearchAPI() {
-            const response = await fetch(baseApiUrl);
-            const eventsData = await response.json();
-            return eventsData._embedded.events
-        }
+    //formatting api endpoint for calling base info
+    function formatURL() {
+        if (formData) {
+            const additionToURL = []; 
 
-    //populate table
+            if (formData.keywordFilter) {
+                additionToURL.push(`keyword=${formData.keywordFilter}`);
+            }
+            if (formData.classificationNameFilter) {
+                additionToURL.push(`classificationName=${formData.classificationNameFilter}`);
+            }
+            if (formData.includeFamilyFilter) {
+                additionToURL.push(`includeFamily=${formData.includeFamilyFilter}`);
+            }
+            if (formData.preferredCountryFilter) {
+                additionToURL.push(`countryCode=${formData.preferredCountryFilter}`);
+            }
+            if (formData.startEndDateTimeFilter) {
+                const date = formData.startEndDateTimeFilter;
+                const startDate = `${date}T00:00:00Z`; // Start of the day
+                const endDate = `${date}T23:59:59Z`; // End of the day
+                additionToURL.push(`startDateTime=${startDate}&endDateTime=${endDate}`);
+            }
+
+            // Update global urlWithFilters
+            urlWithFilters = `${baseApiUrl}&${additionToURL.join('&')}&apikey=${apiKey}`;
+            alert(`API Endpoint: ${urlWithFilters}`); // REMOVE LATER
+        }
+    }
+
+    //API Promise
+    async function loadSearchAPI() {
+            const response = await fetch(urlWithFilters);
+            const eventsData = await response.json();
+            return eventsData._embedded.events;
+    }
+
+    //populate the events table
     async function populateEventsTable() {
         const events = await loadSearchAPI();
 
@@ -138,10 +132,11 @@
         else {console.log("No events to display. Please adjust your filters to be more broad.");}
     }
 
-    window.onload = () => {
-        formatURL();
-        populateEventsTable();
-        localStorage.removeItem('formData'); 
+    window.onload = async () => {
+        getEventData(); 
+        formatURL(); 
+        await populateEventsTable(); 
+        localStorage.clear(); 
     };
 </script>
 

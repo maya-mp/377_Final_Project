@@ -228,8 +228,6 @@
     function handleFormSubmission(event) {
         event.preventDefault(); 
 
-        if (!textValidation(event)) return false;
-
         const formData = {};
 
         if (document.getElementById('keyword').checked) {
