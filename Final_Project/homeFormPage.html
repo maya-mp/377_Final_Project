@@ -141,7 +141,9 @@
         <h1><strong><u>What Do You Want?</u></strong></h1>
         <br>
         <div id ="secondForm">
-            <form name="searchEventsForm" method="get" action="formRedirectPage.html" onsubmit="transformDate(), textValidation()">
+            <form name="searchEventsForm" method="get" action="formRedirectPage.html" 
+            onsubmit="if(!textValidation(event)) return false; transformDate();">
+
                 <div id="question1" class="hidden">
                     <label for="keywordFilter">Search by Term:</label>
                     <input type="text" id="keywordFilter" name="keywordFilter">
@@ -205,17 +207,22 @@
     });
 
     document.getElementById('secondSubmit').classList.remove('hidden');
+    }
 
     /*FUNCTIONS FOR FORM VALIDATION AND GETTINF USABLE STRINGS TO PASS*/
-    function textValidation() { //IDK IF THIS IS NEEDED 
-        var keywordForSearch = document.getElementById('keywordFilter').value
-        if (keywordForSearch){var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        if (validation.test(keywordForSearch)) {
-            alert('Special Character is Present. Please edit your search terms.');
-            event.preventDefault(); 
-            return false;}
-        return true;}
+    function textValidation(event) {
+    const keywordCheckbox = document.getElementById('keyword');
+    if (keywordCheckbox.checked) {
+        const keywordInput = document.getElementById('keywordFilter').value;
+        const specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if (specialCharacterPattern.test(keywordInput)) {
+            alert("Special characters are not allowed in the keyword. Please edit your input.");
+            return false; 
         }
+    }
+    return true; 
+    };
+
 
     //Note: eventClassification and familyFriendly are pre-formatted thru form values
 
@@ -224,9 +231,6 @@
         var dateNoTIme = document.getElementById('startEndDateTimeFilter').value
         const dateTimeForAPI = `${dateNoTime}T00:00:00`
         return dateTimeForAPI;
-    }
-
-}
-
+    };
 </script>
 </html>
