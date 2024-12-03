@@ -26,11 +26,11 @@ if (annyang) {
          const filterChoice = filter.toLowerCase();
          const filters = {
             //value (right) is the id in HTML
-            'keyword search': 'keyword',
-            'event classification': 'classification',
-            'family friendliness': 'friendliness',
-            'location preference': 'location',
-            'date': 'date'
+            'keyword': 'keyword',
+            'event': 'classificationName',
+            'family': 'includeFamily',
+            'location': 'preferredCountry',
+            'date': 'startEndDateTime'
          }
          if (filters[filterChoice]) {
             const checkboxId = filters[filterChoice];
@@ -40,6 +40,10 @@ if (annyang) {
                checkbox.checked = !checkbox.checked;
          }} 
       },
+
+      'done' : () =>{
+         document.getElementById('submit').click();
+      }
       
       //might need to have complimentary functions
       //search for term and county code
