@@ -1,9 +1,9 @@
 //messing around with supabase stuff just incase
-const supabaseClient = require('@supabase/supabase-js')
+// const supabaseClient = require('@supabase/supabase-js')
 
-const supabaseURL = 'https://denxydekwdlgodppwntn.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRlbnh5ZGVrd2RsZ29kcHB3bnRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMwODcxODMsImV4cCI6MjA0ODY2MzE4M30.RkqzvuBrlLHrBQPicvRSOl0znMeOQWxsUOzvw3fcwgc' 
-const supabase = supabaseClient.createClient(supabaseURL, supabaseKey)
+// const supabaseURL = 'https://denxydekwdlgodppwntn.supabase.co'
+// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRlbnh5ZGVrd2RsZ29kcHB3bnRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMwODcxODMsImV4cCI6MjA0ODY2MzE4M30.RkqzvuBrlLHrBQPicvRSOl0znMeOQWxsUOzvw3fcwgc' 
+// const supabase = supabaseClient.createClient(supabaseURL, supabaseKey)
 
 
 
@@ -11,7 +11,6 @@ const supabase = supabaseClient.createClient(supabaseURL, supabaseKey)
 //annyang code from asn 2 -- to be converted to code for this project
 if (annyang) {
    const commands = {
-      //we can keep voice nav? 
      'navigate to :page' : (page) => {
        const pageChoice = page.toLowerCase();
        const pages = {

@@ -2,6 +2,7 @@
 <head>
     <title>Event Finder - Home Page</title>
     <link rel="stylesheet" href="finalProject.css">
+    <script defer type = "text/javascript" src = "index.js"></script>
     <style>
         /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
 
@@ -90,14 +91,19 @@
         <li onclick="window.location='about.html'"><strong>About</strong></li>
     </ul>
 </nav>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<div id = "audio">
+    <h2>Navigate the webpage using audio</h2>
+    <p>Ensure mic is on to use this feature</p>
+    <button id = "turnOn">Turn On Listening</button>
+    <button id = "turnOff">Turn Off Listening</button>
+</div>
 <div class="grid-container">
     <div class="item1">
         <h1><strong><u>Filters</u></strong></h1>
         <h3><strong>Check all that you care about:</strong></h3>
         <br>
         <!-- /discovery/v2/events -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
         <div id="filterForm">
             <!--Loads Step 2 Form -->
             <form name="filterForm" onsubmit="populateForm(event)">
