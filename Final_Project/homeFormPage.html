@@ -106,7 +106,7 @@
         <!-- /discovery/v2/events -->
         <div id="filterForm">
             <!--Loads Step 2 Form -->
-            <form name="filterForm" onsubmit="populateForm(event), transformDate()">
+            <form name="filterForm" onsubmit="populateForm(event)">
                 <div>
                     <input type="checkbox" id="keyword" name="keyword">
                     <label for="keyword">Keyword Search</label>
@@ -141,7 +141,7 @@
         <h1><strong><u>What Do You Want?</u></strong></h1>
         <br>
         <div id ="secondForm">
-            <form name="searchEventsForm" method="get" action="formRedirectPage.html">
+            <form name="searchEventsForm" method="get" action="formRedirectPage.html" onsubmit="transformDate(), textValidation()">
                 <div id="question1" class="hidden">
                     <label for="keywordFilter">Search by Term:</label>
                     <input type="text" id="keywordFilter" name="keywordFilter">
@@ -207,28 +207,22 @@
     document.getElementById('secondSubmit').classList.remove('hidden');
 
     /*FUNCTIONS FOR FORM VALIDATION AND GETTINF USABLE STRINGS TO PASS*/
-    var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     function textValidation() { //IDK IF THIS IS NEEDED 
-        var keywordForSearch = document.getElementById('KeywordFilter').value;
-        if (validation.test(keyworkForSearch)) {
+        var keywordForSearch = document.getElementById('keywordFilter').value
+        if (keywordForSearch){var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if (validation.test(keywordForSearch)) {
             alert('Special Character is Present. Please edit your search terms.');
-            return false;
+            event.preventDefault(); 
+            return false;}
+        return true;}
         }
-        //return true;
-    }
 
     //Note: eventClassification and familyFriendly are pre-formatted thru form values
 
-    //Date from MM/DD/YYYY to YYYY-MM-DDT00:00:00
+    //Date to YYYY-MM-DDT00:00:00
     function transformDate() {
-        var dateForFormatting = document.getElementById('startEndDateTimeFilter').value
-        var dateComponents = dateForFormatting.split('/');
-        var month = dateComponents[0];
-        var day = dateComponents[1];
-        var year = dateComponents[2];
-
-        const dateTimeForAPI = `${year}-${month}-${day}T00:00:00`
-
+        var dateNoTIme = document.getElementById('startEndDateTimeFilter').value
+        const dateTimeForAPI = `${dateNoTime}T00:00:00`
         return dateTimeForAPI;
     }
 
