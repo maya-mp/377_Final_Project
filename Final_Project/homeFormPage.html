@@ -193,36 +193,36 @@
 <script type="text/javascript">
     /*loads relevant filters into second half of page*/
     function populateForm(event) {
-    event.preventDefault(); 
+        event.preventDefault(); 
 
-    const checkboxes = document.querySelectorAll('#filterForm input[type="checkbox"]');
-    let count = 1;
+        const checkboxes = document.querySelectorAll('#filterForm input[type="checkbox"]');
+        let count = 1;
 
-    checkboxes.forEach((checkbox) => {
-        const questionDiv = document.getElementById(`question${count}`);
-        if (checkbox.checked) {
-            questionDiv.classList.remove('hidden');
-            questionDiv.setAttribute('class', `filter${count}`);
-        } 
-        count = count+1;
-    });
+        checkboxes.forEach((checkbox) => {
+            const questionDiv = document.getElementById(`question${count}`);
+            if (checkbox.checked) {
+                questionDiv.classList.remove('hidden');
+                questionDiv.setAttribute('class', `filter${count}`);
+            } 
+            count = count+1;
+        });
 
-    document.getElementById('secondSubmit').classList.remove('hidden');
-    }
+        document.getElementById('secondSubmit').classList.remove('hidden');
+        };
 
     /*FUNCTIONS FOR FORM VALIDATION AND GETTINF USABLE STRINGS TO PASS*/
     function textValidation(event) {
-    const keywordCheckbox = document.getElementById('keyword');
-    if (keywordCheckbox.checked) {
-        const keywordInput = document.getElementById('keywordFilter').value;
-        const specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        if (specialCharacterPattern.test(keywordInput)) {
-            alert("Special characters are not allowed in the keyword. Please edit your input.");
-            return false; 
+        const keywordCheckbox = document.getElementById('keyword');
+        if (keywordCheckbox.checked) {
+            const keywordInput = document.getElementById('keywordFilter').value;
+            const specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (specialCharacterPattern.test(keywordInput)) {
+                alert("Special characters are not allowed in the keyword. Please edit your input.");
+                return false; 
+            }
         }
-    }
-    return true; 
-    };
+        return true; 
+        };
 
     //Saving the data from the form submit locally to access in the redirect page
     function handleFormSubmission(event) {

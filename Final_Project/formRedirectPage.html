@@ -53,9 +53,8 @@
     function getEventData() {
         formData = JSON.parse(localStorage.getItem('formData')); 
         if (formData) {
-            console.log("Form Data Loaded:", formData);
-            alert("Form Data: " + JSON.stringify(formData)); } 
-    }
+            console.log("Form Data Loaded:", formData);} 
+    };
 
     //formatting api endpoint for calling base info
     function formatURL() {
@@ -83,16 +82,16 @@
 
             // Update global urlWithFilters
             urlWithFilters = `${baseApiUrl}&${additionToURL.join('&')}&apikey=${apiKey}`;
-            alert(`API Endpoint: ${urlWithFilters}`); // REMOVE LATER
+            console.log(`API Endpoint: ${urlWithFilters}`); 
         }
-    }
+    };
 
     //API Promise
     async function loadSearchAPI() {
             const response = await fetch(urlWithFilters);
             const eventsData = await response.json();
             return eventsData._embedded.events;
-    }
+    };
 
     //populate the events table
     async function populateEventsTable() {
@@ -114,10 +113,19 @@
             const classificationRow = document.createElement('td');
             classificationRow.textContent = event.classifications[0].segment.name;
             
-            // button function to be implemented later
             const buttonRow = document.createElement('td');
             const detailsButton = document.createElement('button');
             detailsButton.textContent = "Get Details!";
+
+            detailsButton.onclick = () => {
+            // store id in local storage like home page to this page
+            localStorage.setItem('selectedEventId', event.id);
+            console.log("Event ID stored:", event.id); 
+
+            // redirect to the details page and handle the same way
+            window.location.href = 'eventSpecifics.html';
+            };
+
             buttonRow.appendChild(detailsButton);
 
             tableRow.appendChild(nameRow);
@@ -130,7 +138,7 @@
 
     });} 
         else {console.log("No events to display. Please adjust your filters to be more broad.");}
-    }
+    };
 
     window.onload = async () => {
         getEventData(); 
