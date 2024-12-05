@@ -65,9 +65,9 @@
 
     <!--section organization -->
     <div class="grid-container">
-        <div class="item1" id="eventImages"></div> <!-- MAYA - IMPLEMENT IMAGE SLIDER LATER -->
+        <div class="item1" id="eventImages"></div> <!--image (all images in array are the same just different sizes) -->
         <div class="item2" id="eventTitle"></div> <!-- event name -->
-        <div class="item3" id="eventDetails"></div> <!-- info1 (date, price, venue location, description) -->
+        <div class="item3" id="eventDetails"></div> <!-- info1 (date, price, venue location, genre) -->
         <div class="item4" id="eventURL"></div> <!-- link -->
         <div class="item5" id="appendButton"></div> <!-- button IMPLEMENT SUPABASE LATER - AJ -->
     </div>
@@ -109,7 +109,7 @@
         // event details (date, price, venue, description)
         const detailsArea = document.getElementById('eventDetails');
 
-        if (eventData.dates) {
+        if (eventData.dates) { //If we get time we should turn this from ####-##-## to Month Day, Year
             const startDate = eventData.dates.start.localDate;
             dateInfo = `${startDate}`;} 
         else {dateInfo = 'No date information for this event.'};
@@ -122,15 +122,22 @@
         if (eventData._embedded.venues) {
             venue = eventData._embedded.venues[0].name;};
 
-        let descriptionEvent = 'No description found for this event.';
-        if (eventData.description) {
-            descriptionEvent = `<p>${eventData.description}</p>`};
+        let time = 'Time not found.'; //If we get time we should turn this from military time to regular
+        if (eventData.dates.start.localTime) {
+            time = eventData.dates.start.localTime;};
+
+            let genre = 'No genre found for this event.';
+            if (eventData.classifications) {
+                genre = eventData.classifications[0].genre.name;};
+
+
 
         detailsArea.innerHTML = `
             <h2><strong><u>Date:</u></strong> ${dateInfo}</h2>
+            <h2><strong><u>Time:</u></strong> ${time}</h2> 
             <h2><strong><u>Price:</u></strong> ${priceRange}</h2>
             <h2><strong><u>Venue:</u></strong> ${venue}</h2>
-            <h2><strong><u>Description:</u><strong> ${descriptionEvent}<h2>`;
+            <h2><strong><u>Genre:</u></strong> ${genre}</h2>`;
 
         // link
         const linkArea = document.getElementById('eventURL');
