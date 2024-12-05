@@ -1,8 +1,9 @@
 /*NAV BAR*/
 #main-nav {
-    background-color:#2196F3;
+    background-color: darkblue;
     text-align: center;
-    width: 100%
+    width: 100%;
+    color: aliceblue;
     }
 
     #main-nav li:hover {
