@@ -1,4 +1,5 @@
-//re do this step (update key)
+// key invalid
+//messing around with supabase stuff just incase
 // const supabaseClient = require('@supabase/supabase-js')
 
 // const supabaseURL = 'https://denxydekwdlgodppwntn.supabase.co'
