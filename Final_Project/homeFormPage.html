@@ -164,7 +164,7 @@
 
                 <!--STILL NEED TO VALIDATE FOR CoMPLIANT COUNTRY CODES-->
                 <div id="question4" class="hidden">
-                    <label for="preferredCountryFilter">Country Code (abbreviation):</label>
+                    <label for="preferredCountryFilter">Country Code (2-digit ISO abbreviation):</label>
                     <input type="text" id="preferredCountryFilter" name="preferredCountryFilter">
                 </div> 
 
@@ -224,6 +224,18 @@
         }
         return true; 
         };
+    
+    //country code look up code -- work in progress
+    function validateCountry(){
+        const lookup = require('country-code-lookup')
+        const code = document.getElementById('preferredCountryFilter').value;
+        search = lookup.byIso(code)
+        if (!search){
+            alert("Please enter valid country code");
+            return false;
+        }
+        return true;
+    };
 
     //Saving the data from the form submit locally to access in the redirect page
     function handleFormSubmission(event) {
