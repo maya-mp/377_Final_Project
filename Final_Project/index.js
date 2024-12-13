@@ -8,6 +8,12 @@
 
 
 
+//country code look up code -- work in progress
+function validateCountry(){
+   const lookup = require('country-code-lookup')
+   lookup.byIso('')
+}
+
 
 //annyang code 
 if (annyang) {
