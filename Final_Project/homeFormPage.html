@@ -6,8 +6,6 @@
     <style>
         /*Inspo = https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named*/
 
-        /*ADD MORE SPACE BETWEEN ROWS FOR FORMS EVENTUALLY*/
-
         .item1 { grid-area: filter; }
         .item2 { grid-area: main; }
 
@@ -232,7 +230,8 @@
         const formData = {};
 
         if (document.getElementById('keyword').checked) {
-            formData.keywordFilter = document.getElementById('keywordFilter').value;}
+            formData.keywordFilter = document.getElementById('keywordFilter').value;
+            textValidation(event);}
 
         if (document.getElementById('classificationName').checked) {
             formData.classificationNameFilter = document.getElementById('classificationNameFilter').value;}
