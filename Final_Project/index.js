@@ -1,21 +1,8 @@
-//this require is causing errors in the console for not being defined 
-const express = require('express')
-
-const app = express()
-const port = 3000
-app.use(express.static(__dirname + '/public'))
-
-app.get('/Datasets', (req, res) => {
-   console.log('Attempting to get all customers.')
-})
-
-app.post('/Dataset', (req, res) => {
-   console.log('Attempting to add another dataset.')
-})
-  
-app.listen(port, () => {
-   console.log('App works')
-})
+//country code look up code -- work in progress
+function validateCountry(){
+   const lookup = require('country-code-lookup')
+   lookup.byIso('')
+}
 
 //annyang code 
 if (annyang) {
