@@ -28,17 +28,17 @@ link to below portion (?)
 To install our application, ...
 
 Dependencies: 
-   Install node.js
+emsp Install node.js
 
 
-   Install supabase
+emsp Install supabase
 
 
-   Install nodemon
+emsp Install nodemon
 
 
-   Install country-code-lookup
-      $ npm install country-code-lookup
+emsp Install country-code-lookup
+emsp emsp $ npm install country-code-lookup
 ### How to run your application on a server
 
 
