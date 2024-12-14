@@ -10,13 +10,25 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 
 
-app.get('/datasets', (req, res) => {
+app.get('/datasets', async (req, res) => {
    console.log('Attempting to get all datasets.')
-   res.send('blah')
+   
+   const {data,error} = await supabase.from('Datasets').select()
+   
+   if(error){
+      console.log('Error:', error);
+      res.send(error)
+   } else{
+      console.log("Successfully Retrieved Data")
+   res.send(data);
+   }
 });
 
 app.post('/dnataset', (req, res) => {
    console.log('Attempting to add another dataset.')
+
+   console.log('Request,', req)
+   res.send('Blah')
 });
   
 app.listen(port, () => {
