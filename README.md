@@ -16,14 +16,7 @@ link to below portion (?)
 
 
 # Developer Manual 
-### The audience of this document is future developers who will take over your system.
-### They know technical terms and have general knowledge about web applications, but do not have knowledge about your system design.
 
-
-### You need to provide a technical document so that future developers can start setting up the application on their local machines, and keep working on the system development after you leave the team.
-
-
-### Your Developer Manual covers:
 ### How to install your application and all dependencies
 To install our application, ...
 
@@ -52,6 +45,3 @@ Tickermaster API ...
 ## A clear set of expectations around known bugs and a road-map for future development.
 For future development, ...
 
-
-In order to use the Tickermaster Event Finder, you start by filtering through the the options on the home page. Based on the filters chosen, you can narrow your search results from there. Once you search, you are given a table of events that match your criteria. You can then check out the event details, and chose to add certain events to your saved events list, which you can refer to anytime. 
-The system is designed to 
