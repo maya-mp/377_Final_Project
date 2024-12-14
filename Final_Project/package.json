@@ -2,10 +2,10 @@
   "name": "final_project",
   "version": "1.0.0",
   "description": "INST377 Final Project",
-  "main": "index.js",
+  "main": "SupabaseImplement/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e '*'"
+    "start": "nodemon -e SupabaseImplement/*"
   },
   "author": "Jordan Pinkava",
   "license": "ISC",
