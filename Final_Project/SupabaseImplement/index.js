@@ -26,11 +26,12 @@ app.get('/datasets', async (req, res) => {
    }
 });
 
-app.post('/dnataset', async (req, res) => {
+app.post('/datasets', async (req, res) => {
    console.log('Attempting to add another dataset.')
 
    console.log('Request,', req.body)
-
+   
+   const id = req.body.id;
    const name = req.body.name;
    const url = req.body.url;
    const type = req.body.type;
@@ -41,11 +42,12 @@ app.post('/dnataset', async (req, res) => {
    const {data, error} = await supabase
    .from('datasets')
    .insert({
-      'datasets_name': name, 
-      'datasets_url': url, 
-      'datasets_type': type, 
-      'datasets_test': test, 
-      'datasets_timezone': timezone
+      'id': id,
+      'name': name, 
+      'url': url, 
+      'type': type, 
+      'test': test, 
+      'timezone': timezone
    })
    .select();
    
