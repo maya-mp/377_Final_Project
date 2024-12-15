@@ -1,8 +1,10 @@
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
+const bodyParser = require('body-parser')
 
 const app = express();
 const port = 3000
+app.use(bodyParser.json())
 app.use(express.static(__dirname + '/public'));
 
 const supabaseUrl = 'https://emkbpdderydevcxyxymg.supabase.co';
@@ -13,7 +15,7 @@ const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 app.get('/datasets', async (req, res) => {
    console.log('Attempting to get all datasets.')
    
-   const {data,error} = await supabase.from('Datasets').select()
+   const {data,error} = await supabase.from('datasets').select()
    
    if(error){
       console.log('Error:', error);
@@ -24,11 +26,37 @@ app.get('/datasets', async (req, res) => {
    }
 });
 
-app.post('/dnataset', (req, res) => {
+app.post('/dnataset', async (req, res) => {
    console.log('Attempting to add another dataset.')
 
-   console.log('Request,', req)
-   res.send('Blah')
+   console.log('Request,', req.body)
+
+   const name = req.body.name;
+   const url = req.body.url;
+   const type = req.body.type;
+   const test = req.body.test;
+   const timezone = req.body.timezone;
+
+
+   const {data, error} = await supabase
+   .from('datasets')
+   .insert({
+      'datasets_name': name, 
+      'datasets_url': url, 
+      'datasets_type': type, 
+      'datasets_test': test, 
+      'datasets_timezone': timezone
+   })
+   .select();
+   
+   if(error){
+      console.log('Error:', error);
+      res.send(error)
+   } else{
+      console.log("Successfully Retrieved Data")
+   res.send(data);
+   }
+   
 });
   
 app.listen(port, () => {
