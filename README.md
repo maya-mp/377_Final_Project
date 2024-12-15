@@ -54,5 +54,5 @@ Tickermaster Discovery API https://developer.ticketmaster.com/products-and-docs/
 GET Event Search: /discovery/v2/events for finding events and filtering your search by location, date, availability, etc.
 
 ## A clear set of expectations around known bugs and a road-map for future development.
-For future development, we are interested in expanding our website to 
+For future development, we are want to...
 
