@@ -224,15 +224,17 @@
         return true; 
         };
         
-    //country code look up code
+    //country code look up code -- work in progress
     function validateCountry(){
-        const lookup = require('country-code-lookup');
+        const lookup = require('country-code-lookup')
         const code = document.getElementById('preferredCountryFilter').value;
-        const search = lookup.byIso(code);
+        const search = lookup.byIso(code)
         if (!search){
             alert("Please enter valid country code");
+            console.log("invalid")
             return false;
         }
+        console.log("valid")
         return true;
     };
 
