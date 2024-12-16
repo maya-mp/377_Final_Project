@@ -1,66 +1,66 @@
-//annyang code 
-function setupVoiceCommands(){
-   if (annyang) {
-      const commands = {
-        'navigate to :page' : (page) => {
-          const pageChoice = page.toLowerCase();
-          const pages = {
-            'home': "homeFormPage.html",
-            'about': 'about.html'
-          };
-          if (pages[pageChoice]) {
-            window.location.href = pages[pageChoice];};},
+const express = require('express');
+const supabaseClient = require('@supabase/supabase-js');
+const bodyParser = require('body-parser')
+
+const app = express();
+const port = 3000
+app.use(bodyParser.json())
+app.use(express.static(__dirname + '/public'));
+
+const supabaseUrl = 'https://emkbpdderydevcxyxymg.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVta2JwZGRlcnlkZXZjeHl4eW1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM5NTYwMjQsImV4cCI6MjA0OTUzMjAyNH0.x9WLVa9pbYNpkZpkbHj-bnMOnYWFcy7Gl3_JUqBuNjY';
+const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+
+
+app.get('/datasets', async (req, res) => {
+   console.log('Attempting to get all datasets.')
    
-         'select :filter': (filter) => {
-            const filterChoice = filter.toLowerCase();
-            const filters = {
-               //value (right) is the id in HTML
-               'keyword': 'keyword',
-               'event': 'classificationName',
-               'family': 'includeFamily',
-               'location': 'preferredCountry',
-               'date': 'startEndDateTime'
-            }
-            if (filters[filterChoice]) {
-               const checkboxId = filters[filterChoice];
-               const checkbox = document.getElementById(checkboxId);
-               
-               if (checkbox) {
-                  checkbox.checked = !checkbox.checked;
-            }} 
-         },
+   const {data,error} = await supabase.from('datasets').select()
    
-         'done' : () =>{
-            document.getElementById('submit').click();
-         }
-      };
-    
-      annyang.addCommands(commands);
-    
-      const start = () => {
-        annyang.start();
-        document.getElementById("turnOn").disabled = true;
-        document.getElementById("turnOff").disabled = false;
-      };
-    
-      const stop = () => {
-        annyang.abort();
-        document.getElementById("turnOn").disabled = false;
-        document.getElementById("turnOff").disabled = true;
-      };
-    
-      document.getElementById('turnOn').addEventListener('click', start);
-      document.getElementById('turnOff').addEventListener('click', stop);
-    }
-}
-function fetchSavedEvents(){
+   if(error){
+      console.log('Error:', error);
+      res.send(error)
+   } else{
+      console.log("Successfully Retrieved Data")
+   res.send(data);
+   }
+});
+
+app.post('/datasets', async (req, res) => {
+   console.log('Attempting to add another dataset.')
+
+   console.log('Request,', req.body)
    
-}
+   const id = req.body.id;
+   const name = req.body.name;
+   const url = req.body.url;
+   const type = req.body.type;
+   const test = req.body.test;
+   const timezone = req.body.timezone;
 
 
-
-function main() {
-   setupVoiceCommands();
-}
-
-main();
+   const {data, error} = await supabase
+   .from('datasets')
+   .insert({
+      'id': id,
+      'name': name, 
+      'url': url, 
+      'type': type, 
+      'test': test, 
+      'timezone': timezone
+   })
+   .select();
+   
+   if(error){
+      console.log('Error:', error);
+      res.send(error)
+   } else{
+      console.log("Successfully Retrieved Data")
+   res.send(data);
+   }
+   
+});
+  
+app.listen(port, () => {
+   console.log('App works')
+});
