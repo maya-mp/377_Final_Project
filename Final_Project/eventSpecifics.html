@@ -96,7 +96,7 @@
         const eventData = await loadDetailAPI();
         console.log(eventData); 
 
-        // image (placeholder for Image Slider)
+        // image 
         const imageArea = document.getElementById('eventImages');
         if (eventData.images) {
             imageArea.innerHTML = `<img src="${eventData.images[0].url}" alt="Event Image" class="center">`;
@@ -153,10 +153,7 @@
         const buttonArea = document.getElementById('appendButton');
         const appendButton = document.createElement('button');
         appendButton.textContent = 'Save Event'; 
-        buttonArea.appendChild(appendButton); 
-        //ONCLICK ADD AN ALERT THAT SAYS ITS SAVED SO PEOPLE DONT SPAM BUTTOM
-    }
-
-    window.onload = populatePage;
+        buttonArea.appendChild(appendButton);
+        }
 </script>
 </html>
