@@ -15,7 +15,7 @@ The website is available for anyone to use on any device or browser.
 # Developer Manual 
 
 ### How to install our application and all dependencies
-To install our application, ...
+To install our application, make sure all of the following dependencies are installed and that you use npm start to get the application running.
 
 Dependencies: 
 Install node.js
@@ -36,7 +36,7 @@ Install body-parser
 Install country-code-lookup
    $ npm install country-code-lookup
 ### How to run your application on a server
-
+Once all dependencies are installed, use command line argument npm start then go live on your browser. From there, you should be good to use our website and retrieve all necessary data.
 
 ### How to run any tests we have written for our software
 To test our voice command feature, try the page navigation feature. Simplly say "navigate to _" and the page you'd like to redirect to from the homepage.
@@ -51,5 +51,5 @@ Tickermaster Discovery API https://developer.ticketmaster.com/products-and-docs/
 GET Event Search: /discovery/v2/events for finding events and filtering your search by location, date, availability, etc.
 
 ## A clear set of expectations around known bugs and a road-map for future development.
-For future development, we want to refine the front end with implementation of more custom CSS and transitions. Implementing more API calls to the Ticketmaster API could also be helpful to get more specific information on the page of all of the event information for a specific event. For example, by making an additional call to the venue API with the venue ID in our current API call, the venue location and photos could be accessible to our users. Implementing geoSearch and autocorrect were also options we did not have time to implement but plan to in the future. 
+For future development, we want to refine the front end with implementation of more custom CSS and transitions. Implementing more API calls to the Ticketmaster API could also be helpful to get more specific information on the page of all of the event information for a specific event. For example, by making an additional call to the venue API with the venue ID in our current API call, the venue location and photos could be accessible to our users. Implementing geoSearch and autocorrect were also options we did not have time to implement but plan to in the future. Further, we want to add a button on the event specifics page so that you can add an event to a saved events table. This will allow users to save events of interest to a table with various columns of information. 
 
