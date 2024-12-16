@@ -11,9 +11,6 @@ If you are interested in an event, you can look into the event on our website, a
 If you are interested in the event, you can add it to your saved events list and check out all your saved events later. 
 ## Description of target browsers (iOS? Android? Which ones?)
 The website is available for anyone to use on any device or browser.
-## Link to Developer Manual
-link to below portion (?)
-
 
 # Developer Manual 
 
@@ -54,5 +51,5 @@ Tickermaster Discovery API https://developer.ticketmaster.com/products-and-docs/
 GET Event Search: /discovery/v2/events for finding events and filtering your search by location, date, availability, etc.
 
 ## A clear set of expectations around known bugs and a road-map for future development.
-For future development, we are want to...
+For future development, we want to refine the front end with implementation of more custom CSS and transitions. Implementing more API calls to the Ticketmaster API could also be helpful to get more specific information on the page of all of the event information for a specific event. For example, by making an additional call to the venue API with the venue ID in our current API call, the venue location and photos could be accessible to our users. Implementing geoSearch and autocorrect were also options we did not have time to implement but plan to in the future. 
 
