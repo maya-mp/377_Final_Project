@@ -62,7 +62,7 @@
         <ul>
             <li onclick="window.location='homeFormPage.html'"><strong>Home</strong></li>
             <li onclick="window.location='about.html'"><strong>About</strong></li>
-            <li onclick="window.location= 'savedEvents.html'"><strong>Saved Events</strong></li>
+            <li onclick="window.location= 'savedEvents.html'"><strong>Popular Events</strong></li>
         </ul>
     </nav>
 
@@ -148,12 +148,6 @@
             linkArea.innerHTML = `<a href='${eventData.url}'' target='_blank'><h1>Ticketmaster Event Link</h1></a>`;
         } else {
             linkArea.innerHTML = '<h2>No link available.</h2>';}
-
-        // button (placeholder until further JS) and make it custom CSS to make it nicer - AJ
-        const buttonArea = document.getElementById('appendButton');
-        const appendButton = document.createElement('button');
-        appendButton.textContent = 'Save Event'; 
-        buttonArea.appendChild(appendButton);
         }
 </script>
 </html>
